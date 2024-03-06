@@ -7,23 +7,17 @@
 
 namespace App\Kernel\Controllers;
 
-use App\Kernel\Container\Container;
-use App\Kernel\View\View;
-
 /**
- * Description of Controller
+ * Description of IndexController
  *
  * @author leonid
  */
-
-abstract class Controller
+class IndexController extends Controller
 {
-    
-    public readonly Container $container;
-    public function __construct()
+    public function index()
     {
-        $this->container = new Container();
+         $page = $this->container->view;
+         $page->view('index');
+//        $this->container->view->view('index');
     }
-
-
 }

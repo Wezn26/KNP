@@ -5,25 +5,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/PHPClass.php to edit this template
  */
 
-namespace App\Kernel\Controllers;
+namespace App\Kernel\Container;
 
-use App\Kernel\Container\Container;
 use App\Kernel\View\View;
 
 /**
- * Description of Controller
+ * Description of Container
  *
  * @author leonid
  */
-
-abstract class Controller
+class Container
 {
+    public readonly View $view;
     
-    public readonly Container $container;
     public function __construct()
     {
-        $this->container = new Container();
+        $this->registerServices();
     }
 
-
+    
+    private function registerServices(): void
+    {
+        $this->view = new View();
+    }
 }
