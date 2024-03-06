@@ -14,5 +14,10 @@ namespace App\Kernel;
  */
 class App
 {
-    //put your code here
+    public function run()
+    {
+        $routes = require_once APP_PATH . '/App/config/routes.php';
+        $uri = $_SERVER['REQUEST_URI'];
+        $routes[$uri]();
+    }
 }
