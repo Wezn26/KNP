@@ -19,7 +19,7 @@ class View
 {
     public function view(string $name): void
     {
-        $viewPath = APP_PATH . "/views/pages/$name.php";
+        $viewPath = APP_PATH . "/App/views/pages/$name.php";
         if (!file_exists($viewPath)) {
             throw new ViewNotFoundException("View $name not found!!!");
         }
