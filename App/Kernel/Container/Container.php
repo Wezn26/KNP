@@ -7,6 +7,7 @@
 
 namespace App\Kernel\Container;
 
+use App\Kernel\Http\Request;
 use App\Kernel\View\View;
 
 /**
@@ -16,6 +17,8 @@ use App\Kernel\View\View;
  */
 class Container
 {
+    public readonly Request $request;   
+
     public readonly View $view;
     
     public function __construct()
@@ -26,6 +29,7 @@ class Container
     
     private function registerServices(): void
     {
+        $this->request = Request::createFromGlobals();        
         $this->view = new View();
     }
 }

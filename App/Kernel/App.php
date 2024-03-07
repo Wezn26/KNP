@@ -7,6 +7,8 @@
 
 namespace App\Kernel;
 
+use App\Kernel\Container\Container;
+use App\Kernel\Controllers\Controller;
 use App\Kernel\Router\Router;
 
 /**
@@ -14,16 +16,25 @@ use App\Kernel\Router\Router;
  *
  * @author leonid
  */
-class App
+class App extends Controller
 {
+
     public function run()
     {
+
+
         $router = new Router();
-        $uri = $_SERVER['REQUEST_URI'];
-        $method = $_SERVER['REQUEST_METHOD'];
+        $uri = $this->container->request->uri();
+        $method = $this->container->request->method();
         $router->dispatch($uri, $method);
         
         
+        //SECOND ROUTER REALIZATION
+        //$router = new Router();
+        //$uri = $_SERVER['REQUEST_URI'];
+        //$method = $_SERVER['REQUEST_METHOD'];
+        //$router->dispatch($uri, $method);
+      
         // FIRST ROUTER REALIZATION
 //        $routes = require_once APP_PATH . '/App/config/routes.php';
 //        $uri = $_SERVER['REQUEST_URI'];

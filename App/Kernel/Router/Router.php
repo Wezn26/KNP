@@ -64,7 +64,7 @@ class Router
         return require_once APP_PATH . '/App/config/routes.php';
     }
     
-    private function initRoutes()
+    private function initRoutes(): void
     {
         $routes = $this->getRoutes();
         foreach ($routes as $route) {
