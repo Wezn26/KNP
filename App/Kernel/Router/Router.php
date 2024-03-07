@@ -27,7 +27,19 @@ class Router
     
     public function dispatch(string $uri, string $method): void
     {
+        $route = $this->findRoute($uri, $method);
+        if (!$route) {
+            $this->notFound();
+        }
         
+        if (is_array($route->getAction())) {
+            [$controller, $action] = $route->getAction();
+             /** @var Controller $controller */
+            $controller = new $controller();
+            call_user_func([$controller, $action]);
+        } else {
+            call_user_func($route->getAction());
+        }
     }
     
     private function findRoute(string $uri, string $method): Route|false
@@ -56,7 +68,7 @@ class Router
     {
         $routes = $this->getRoutes();
         foreach ($routes as $route) {
-            $this->allRoutes[$route->getMethod()][$route->getUri()]
+            $this->allRoutes[$route->getMethod()][$route->getUri()] = $route;
         }
     }
     

@@ -7,6 +7,8 @@
 
 namespace App\Kernel;
 
+use App\Kernel\Router\Router;
+
 /**
  * Description of App
  *
@@ -16,8 +18,15 @@ class App
 {
     public function run()
     {
-        $routes = require_once APP_PATH . '/App/config/routes.php';
+        $router = new Router();
         $uri = $_SERVER['REQUEST_URI'];
-        $routes[$uri]();
+        $method = $_SERVER['REQUEST_METHOD'];
+        $router->dispatch($uri, $method);
+        
+        
+        // FIRST ROUTER REALIZATION
+//        $routes = require_once APP_PATH . '/App/config/routes.php';
+//        $uri = $_SERVER['REQUEST_URI'];
+//        $routes[$uri]();
     }
 }
