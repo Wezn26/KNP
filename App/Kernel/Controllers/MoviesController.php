@@ -8,16 +8,15 @@
 namespace App\Kernel\Controllers;
 
 /**
- * Description of IndexController
+ * Description of MoviesController
  *
  * @author leonid
  */
-class IndexController extends Controller
+class MoviesController extends Controller
 {
     public function index(): void
     {
-         $page = $this->container->view;
-         $page->view('index');
-//        $this->container->view->view('index');
+        $page = $this->container->view;
+        $page->view('movies');
     }
 }

@@ -5,5 +5,5 @@
 ?>
 
 <?php $view->component('start') ?>
-<h1>Main Page</h1>
+<h1>Movies Page</h1>
 <?php $view->component('end') ?>

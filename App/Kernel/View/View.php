@@ -32,7 +32,7 @@ class View
     
     public function component(string $name): void
     {
-        $componentPath = APP_PATH . "/App/views/pages/$name.php";
+        $componentPath = APP_PATH . "/App/views/components/$name.php";
         if (!file_exists($componentPath)) {
             echo "Component $name not found!!!";
             return;
