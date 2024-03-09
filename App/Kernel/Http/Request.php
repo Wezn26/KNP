@@ -7,13 +7,16 @@
 
 namespace App\Kernel\Http;
 
+use App\Kernel\Controllers\Controller;
+use App\Kernel\Validator\Validator;
+
 /**
  * Description of Request
  *
  * @author leonid
  */
-class Request
-{
+class Request extends Controller
+{      
     public function __construct(
             public readonly array $get,
             public readonly array $post,
@@ -44,5 +47,32 @@ class Request
     public function method(): string
     {
         return $this->server['REQUEST_METHOD'];
+    }
+    
+    public function input(string $key, $default = null): mixed
+    {
+        return $this->post[$key] ?? $this->get[$key] ?? $default;
+    }
+    
+    public function validate(string $rules): bool
+    {
+        $validator = $this->getValidator();
+        $data = [];
+        foreach ($rules as $field => $rule) {
+            $data[$field] = $this->input($field);
+        }
+        return $validator->valid($data, $rules);
+    }
+    
+    private function getValidator(): Validator
+    {
+        $validator = $this->container->validator;
+        return $validator;
+    }
+    
+    public function errors(): array
+    {
+        $validator = $this->getValidator();
+        return $validator->errors();
     }
 }

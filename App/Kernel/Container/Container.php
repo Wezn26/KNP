@@ -8,6 +8,7 @@
 namespace App\Kernel\Container;
 
 use App\Kernel\Http\Request;
+use App\Kernel\Validator\Validator;
 use App\Kernel\View\View;
 
 /**
@@ -21,7 +22,9 @@ class Container
 
     public readonly View $view;
     
-    public function __construct()
+    public readonly Validator $validator;
+
+        public function __construct()
     {
         $this->registerServices();
     }
@@ -31,5 +34,6 @@ class Container
     {
         $this->request = Request::createFromGlobals();        
         $this->view = new View();
+        $this->validator = new Validator();
     }
 }
