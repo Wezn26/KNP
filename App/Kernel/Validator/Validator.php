@@ -17,7 +17,7 @@ class Validator
     private array $errors = [];
     private array $data;
     
-    public function validate(array $data, array $rules): bool
+    public function valid(array $data, array $rules): bool
     {
         $this->errors = [];
         $this->data = $data;
