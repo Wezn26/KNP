@@ -24,6 +24,12 @@ abstract class Controller
     {
         $this->container = new Container();
     }
+    
+    public function redirect($url)
+    {
+        header("Location: $url");
+        exit;
+    }
 
 
 }

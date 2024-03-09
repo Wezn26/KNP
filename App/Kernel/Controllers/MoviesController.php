@@ -19,4 +19,10 @@ class MoviesController extends Controller
         $page = $this->container->view;
         $page->view('movies');
     }
+    
+    public function add(): void
+    {
+        $page = $this->container->view;
+        $page->view('admin/movies/add');
+    }
 }
