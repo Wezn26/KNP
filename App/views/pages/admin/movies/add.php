@@ -8,7 +8,7 @@
 
 <h1>Add Movie Page</h1>
 
-<form action="" method="post">
+<form action="/admin/movies/store" method="post">
     <p>Name:</p>
         
     <div>
