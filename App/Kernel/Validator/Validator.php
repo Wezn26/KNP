@@ -34,7 +34,7 @@ class Validator
                 $error = $this->validateRule($key, $ruleName, $ruleValue);
                 
                 if ($error) {
-                    $this->errors[$key];
+                    $this->errors[$key][] = $error;
                 }
             }
         }

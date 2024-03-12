@@ -8,6 +8,7 @@
 namespace App\Kernel\Controllers;
 
 use App\Kernel\Container\Container;
+use App\Kernel\Session\Session;
 use App\Kernel\View\View;
 
 /**
@@ -19,7 +20,7 @@ use App\Kernel\View\View;
 abstract class Controller
 {
     
-    public readonly Container $container;
+    public readonly Container $container;    
     public function __construct()
     {
         $this->container = new Container();
@@ -29,6 +30,17 @@ abstract class Controller
     {
         header("Location: $url");
         exit;
+    }
+    
+    private function getSession()
+    {
+        $session = new Session();
+        return $session;
+    }
+    
+    public function session()
+    {
+        return $this->getSession();
     }
 
 

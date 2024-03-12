@@ -21,8 +21,23 @@ class MoviesController extends Controller
     }
     
     public function add(): void
-    {
+    {        
         $page = $this->container->view;
         $page->view('admin/movies/add');
+    }
+    
+    public function store()
+    {        
+        $request = $this->container->request;  
+        $validator = $this->container->validator;
+       
+        $validation = $request->validate([
+           'name' => ['required', 'min:3', 'max:50'],
+        ]);
+               
+        if (!$validation) {
+            dd('Validation Failed', $validator->errors());
+        }
+        dd('Validation passed!!');
     }
 }
