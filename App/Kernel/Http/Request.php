@@ -68,7 +68,7 @@ class Request extends Controller
     
     private function getValidator(): Validator
     {
-        $validator = $this->validator = new Validator();
+        $validator = new Validator();
         return $validator;
     }
     
